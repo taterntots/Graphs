@@ -13,19 +13,25 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        self.vertices[vertex_id] = set() # set of edges
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        # If both vertices are in the graph
+        if v1 in self.vertices and v2 in self.vertices:
+            # Add a one-way link for vertex one to vertex two
+	        self.vertices[v1].add(v2)
+        #Otherwise, provide an error explaining the vertex does not exist
+        else:
+            raise IndexError("Vertex does not exist in graph")
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
@@ -96,6 +102,8 @@ if __name__ == '__main__':
     graph.add_edge(3, 5)
     graph.add_edge(2, 3)
     graph.add_edge(4, 6)
+
+    # print(graph.get_neighbors(4))
 
     '''
     Should print:
