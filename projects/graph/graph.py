@@ -56,7 +56,7 @@ class Graph:
                 # Mark the vertex as visited
                 visited.add(v)
 
-                # 
+                # For the next vertex with linkages, add it to the queue
                 for next_vert in self.get_neighbors(v):
                     q.enqueue(next_vert)
 
@@ -65,7 +65,27 @@ class Graph:
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Add the starting_vertex to the stack
+        s = Stack()
+        s.push(starting_vertex)
+
+        # Keep track of the visited nodes
+        visited = set()
+
+        # Repeat until stack is empty
+        while s.size() > 0:
+            # Dequeue first vertex
+            v = s.pop()
+            # If the vertex is not visited
+            if v not in visited:
+                # Print the vertex in breadth-first order
+                print(v)
+                # Mark the vertex as visited
+                visited.add(v)
+
+                # For the next vertex with linkages, add it to the stack
+                for next_vert in self.get_neighbors(v):
+                    s.push(next_vert)
 
     def dft_recursive(self, starting_vertex):
         """
