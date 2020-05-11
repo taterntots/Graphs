@@ -13,7 +13,7 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        self.vertices[vertex_id] = set() # set of edges
+        self.vertices[vertex_id] = set() # Creates a set of edges
 
     def add_edge(self, v1, v2):
         """
@@ -38,7 +38,27 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # Add the starting_vertex to the queue
+        q = Queue()
+        q.enqueue(starting_vertex)
+
+        # Keep track of the visited nodes
+        visited = set()
+
+        # Repeat until queue is empty
+        while q.size() > 0:
+            # Dequeue first vertex
+            v = q.dequeue()
+            # If the vertex is not visited
+            if v not in visited:
+                # Print the vertex in breadth-first order
+                print(v)
+                # Mark the vertex as visited
+                visited.add(v)
+
+                # 
+                for next_vert in self.get_neighbors(v):
+                    q.enqueue(next_vert)
 
     def dft(self, starting_vertex):
         """
