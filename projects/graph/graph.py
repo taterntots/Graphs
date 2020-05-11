@@ -74,11 +74,11 @@ class Graph:
 
         # Repeat until stack is empty
         while s.size() > 0:
-            # Dequeue first vertex
+            # Remove the last vertex in the stack
             v = s.pop()
             # If the vertex is not visited
             if v not in visited:
-                # Print the vertex in breadth-first order
+                # Print the vertex in depth-first order
                 print(v)
                 # Mark the vertex as visited
                 visited.add(v)
@@ -87,14 +87,28 @@ class Graph:
                 for next_vert in self.get_neighbors(v):
                     s.push(next_vert)
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        # If visited is empty, set it to an empty set object
+        if visited is None:
+            visited = set()
+
+        # If our starting vertex is not in the visted set
+        if starting_vertex not in visited:
+            # Print the vertex in depth-first order
+            print(starting_vertex)
+            # Mark the vertex as visited
+            visited.add(starting_vertex)
+
+            # For the next vertex with linkages, add it to the stack
+            for next_vert in self.get_neighbors(starting_vertex):
+                self.dft_recursive(next_vert, visited)
+
 
     def bfs(self, starting_vertex, destination_vertex):
         """
