@@ -1,3 +1,5 @@
+from util import Stack, Queue 
+from graph import Graph
 import random
 
 class User:
@@ -82,8 +84,42 @@ class SocialGraph:
 
         The key is the friend's ID and the value is the path.
         """
-        visited = {}  # Note that this is a dictionary, not a set
-        # !!!! IMPLEMENT ME
+        # Create an empty queue and enqueue A PATH TO the starting vertex (user) ID
+        q = Queue()
+        q.enqueue([user_id])
+
+        # Create a Dictionary to store visited vertices
+        visited = {}
+        
+        # Use breath-first-search to traverse friends and find the shortest friendship path
+        # While the queue is not empty...
+        while q.size() > 0:
+            # Dequeue the first person and set to the path
+            path = q.dequeue()
+            # Grab the last vertex from the path and set it to our current person
+            current_person = path[-1]
+
+            # print(visited.keys())
+
+            # If the current person is not in our visited dictionary (keeps from returning an empty dictionary if no friends)
+            if current_person not in visited:
+                # Set the path to the current person
+                visited[current_person] = path
+
+            # Loop through every friend
+            for friend in self.friendships[current_person]:
+                # print(friend)
+                # Check to see if we have visited all the nodes
+                if friend not in visited.keys():
+                    # Make a new list from the path
+                    path_copy = path.copy()
+                    # Add the friend to the new path
+                    path_copy.append(friend)
+                    #Add our path to the queue
+                    q.enqueue(path_copy)
+                    # Add the path copy to our visited dictionary using the key of the current_person
+                    visited[current_person] = path_copy
+
         return visited
 
 
