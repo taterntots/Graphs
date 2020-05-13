@@ -52,18 +52,18 @@ class Graph:
 
     return earliest_ancestor
 
-def earliest_ancestor(ancestors, starting_node):
-    # Build the Graph
-    graph = Graph()
-    # Add the vertices for the parent and child
-    for (parent, child) in ancestors:
-        graph.add_vertex(parent)
-        graph.add_vertex(child)
-        # Create linkages from the ancestors list
-        graph.add_edge(parent, child)
+# def earliest_ancestor(ancestors, starting_node):
+#     # Build the Graph
+#     graph = Graph()
+#     # Add the vertices for the parent and child
+#     for (parent, child) in ancestors:
+#         graph.add_vertex(parent)
+#         graph.add_vertex(child)
+#         # Create linkages from the ancestors list
+#         graph.add_edge(parent, child)
 
-    # print(graph.vertices)
-    return graph.bfs(starting_node)
+#     # print(graph.vertices)
+#     return graph.bfs(starting_node)
 
-test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
-print(earliest_ancestor(test_ancestors, 6))
+# test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
+# print(earliest_ancestor(test_ancestors, 6))
